@@ -17,4 +17,4 @@ spec:
         - key: owner
           value: borrelli-argocd-demo
         - key: hello
-          value: hi!
+          value: there
