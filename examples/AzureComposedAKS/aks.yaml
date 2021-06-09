@@ -44,7 +44,7 @@ spec:
   vnetSubnetIDRef:
     name: crossplane-demo-sub
   location: West US 2
-  version: "1.19.9"
+  version: "1.19.11"
   nodeCount: 1
   nodeVMSize: Standard_B2s
   dnsNamePrefix: crossplane-aks
