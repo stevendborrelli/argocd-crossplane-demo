@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: azure-composed-db
+  name: azure-aks
   namespace: argocd
 spec:
   destination:
