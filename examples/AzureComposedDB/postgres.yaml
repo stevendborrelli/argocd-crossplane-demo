@@ -1,0 +1,13 @@
+kind: PostgreSQLInstance
+metadata:
+  name: my-db
+  namespace: default
+spec:
+  parameters:
+    storageGB: 20
+  compositionSelector:
+    matchLabels:
+      provider: azure
+  writeConnectionSecretToRef:
+    name: db-conn
+

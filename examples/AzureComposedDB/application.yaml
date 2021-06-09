@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: azure-composed-db
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: crossplane-demo
+  source:
+    path: examples/Azure/ComposedDB
+    repoURL: https://github.com/stevendborrelli/argocd-crossplane-demo
+    targetRevision: HEAD
