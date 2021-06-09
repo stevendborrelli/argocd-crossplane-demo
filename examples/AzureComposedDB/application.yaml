@@ -8,6 +8,6 @@ spec:
     server: https://kubernetes.default.svc
   project: crossplane-demo
   source:
-    path: examples/Azure/ComposedDB
+    path: examples/AzureComposedDB
     repoURL: https://github.com/stevendborrelli/argocd-crossplane-demo
     targetRevision: HEAD
