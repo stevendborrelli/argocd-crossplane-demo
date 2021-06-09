@@ -1,0 +1,55 @@
+apiVersion: azure.crossplane.io/v1alpha3
+kind: ResourceGroup
+metadata:
+  name: crossplane-demo
+spec:
+  location: West US 2
+---
+apiVersion: network.azure.crossplane.io/v1alpha3
+kind: VirtualNetwork
+metadata:
+  name: crossplane-demo-vn
+spec:
+  resourceGroupNameRef:
+    name: crossplane-demo
+  location: West US 2
+  properties:
+    addressSpace:
+      addressPrefixes:
+        - 10.2.0.0/16
+---
+apiVersion: network.azure.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  name: crossplane-demo-sub
+spec:
+  resourceGroupNameRef:
+    name: crossplane-demo
+  virtualNetworkNameRef:
+    name: crossplane-demo-vn
+  properties:
+    addressPrefix: 10.2.0.0/24
+    serviceEndpoints:
+      - service: Microsoft.KeyVault
+---
+apiVersion: compute.azure.crossplane.io/v1alpha3
+kind: AKSCluster
+metadata:
+  name: crossplane-demo-akscluster
+  labels:
+    example: "true"
+spec:
+  resourceGroupNameRef:
+    name: crossplane-demo
+  vnetSubnetIDRef:
+    name: crossplane-demo-sub
+  location: West US 2
+  version: "1.19.9"
+  nodeCount: 1
+  nodeVMSize: Standard_B2s
+  dnsNamePrefix: crossplane-aks
+  disableRBAC: false
+  writeConnectionSecretToRef: 
+     name: crossplane-demo-aks-secret
+     namespace: upbound-system
+
